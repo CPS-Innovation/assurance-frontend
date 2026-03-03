@@ -27,10 +27,20 @@ const ONE_HOUR_SECONDS = 3600
 const TOKEN_REFRESH_THRESHOLD_MINUTES = 5
 const HTTP_BAD_REQUEST = 400
 
+const BYPASS_SESSION_ID = 'dev-auth-bypass-session'
+const BYPASS_USER = {
+  id: 'dev-auth-bypass-user',
+  email: 'dev@localhost',
+  name: 'Development User',
+  roles: ['admin']
+}
+
 export const plugin = {
   name: 'auth',
   version: '1.0.0',
   register: async (server) => {
+    const isAuthBypassEnabled = config.get('auth.bypass')
+
     // Register cookie plugin
     await server.register(Cookie)
 
@@ -197,26 +207,30 @@ export const plugin = {
 
     // Setup Azure AD OIDC Issuer and Client
     let oidcClient
-    try {
-      const tenantId = config.get('azure.tenantId')
-      const clientId = config.get('azure.clientId')
-      const clientSecret = config.get('azure.clientSecret')
-      const callbackUrl = config.get('azure.callbackUrl')
+    if (!isAuthBypassEnabled) {
+      try {
+        const tenantId = config.get('azure.tenantId')
+        const clientId = config.get('azure.clientId')
+        const clientSecret = config.get('azure.clientSecret')
+        const callbackUrl = config.get('azure.callbackUrl')
 
-      const issuer = await Issuer.discover(
-        `https://login.microsoftonline.com/${tenantId}/v2.0/.well-known/openid-configuration`
-      )
+        const issuer = await Issuer.discover(
+          `https://login.microsoftonline.com/${tenantId}/v2.0/.well-known/openid-configuration`
+        )
 
-      oidcClient = new issuer.Client({
-        client_id: clientId,
-        client_secret: clientSecret,
-        redirect_uris: [callbackUrl],
-        response_types: ['code']
-      })
+        oidcClient = new issuer.Client({
+          client_id: clientId,
+          client_secret: clientSecret,
+          redirect_uris: [callbackUrl],
+          response_types: ['code']
+        })
 
-      server.app.oidcClient = oidcClient
-    } catch (error) {
-      logger.error('Failed to setup OIDC client', error)
+        server.app.oidcClient = oidcClient
+      } catch (error) {
+        logger.error('Failed to setup OIDC client', error)
+      }
+    } else {
+      logger.warn('Authentication bypass is enabled (development mode)')
     }
 
     async function handleTokenRefresh(
@@ -268,6 +282,18 @@ export const plugin = {
     // Main session validation orchestrator - reduced complexity
     async function validateSessionRequest(request, session, sessionCache) {
       try {
+        if (isAuthBypassEnabled) {
+          return {
+            isValid: true,
+            credentials: {
+              id: BYPASS_SESSION_ID,
+              user: BYPASS_USER,
+              token: null,
+              expires: Date.now() + TWENTY_FOUR_HOURS_MS
+            }
+          }
+        }
+
         // Guard: Skip validation for public paths
         if (sessionValidator.isPublicPath(request.path)) {
           return { isValid: false }
@@ -341,6 +367,33 @@ export const plugin = {
 
     // Create visitor sessions for unauthenticated users
     server.ext('onPreAuth', async (request, h) => {
+      if (isAuthBypassEnabled) {
+        const bypassSession = {
+          user: BYPASS_USER,
+          token: null,
+          refreshToken: null,
+          tokenExpires: Date.now() + ONE_HOUR_SECONDS * 1000,
+          expires: Date.now() + TWENTY_FOUR_HOURS_MS
+        }
+
+        await server.app.sessionCache?.set(BYPASS_SESSION_ID, bypassSession)
+        request.state = request.state || {}
+        request.state[AUTH_SESSION_COOKIE_NAME] = { id: BYPASS_SESSION_ID }
+        h.state(
+          AUTH_SESSION_COOKIE_NAME,
+          { id: BYPASS_SESSION_ID },
+          {
+            ttl: TWENTY_FOUR_HOURS_MS,
+            isHttpOnly: true,
+            isSecure: config.get('session.cookie.secure'),
+            isSameSite: 'Lax',
+            path: '/'
+          }
+        )
+
+        return h.continue
+      }
+
       const sessionCookie = request.state?.[AUTH_SESSION_COOKIE_NAME]
 
       // Skip visitor session creation for auth paths to avoid interfering with OAuth flow
@@ -397,6 +450,11 @@ export const plugin = {
       path: AUTH_LOGIN_PATH,
       options: { auth: false },
       handler: async (request, h) => {
+        if (isAuthBypassEnabled) {
+          const redirectPath = request.query.redirectTo || HOME_PATH
+          return h.redirect(redirectPath)
+        }
+
         if (!oidcClient) {
           return h.view(ERROR_TEMPLATE, {
             title: AUTH_ERROR_TITLE,
@@ -464,6 +522,10 @@ export const plugin = {
       path: AUTH_PATH,
       options: { auth: false },
       handler: async (request, h) => {
+        if (isAuthBypassEnabled) {
+          return h.redirect(HOME_PATH)
+        }
+
         if (!oidcClient) {
           return h.view(ERROR_TEMPLATE, {
             title: AUTH_ERROR_TITLE,
@@ -518,6 +580,10 @@ export const plugin = {
       },
       handler: async (request, h) => {
         try {
+          if (isAuthBypassEnabled) {
+            return h.redirect(HOME_PATH)
+          }
+
           // Clear session from cache if we have the session ID
           if (request.auth.isAuthenticated && request.auth.credentials?.id) {
             await server.app.sessionCache?.drop(request.auth.credentials.id)

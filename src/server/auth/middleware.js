@@ -1,8 +1,18 @@
 import { logger } from '~/src/server/common/helpers/logging/logger.js'
+import { config } from '~/src/config/config.js'
 
 // Constants for repeated redirect URLs
 const LOGIN_REDIRECT_URL = '/auth/login?redirectTo='
 const INSUFFICIENT_PERMISSIONS_URL = '/auth/insufficient-permissions'
+
+const getBypassUser = () => ({
+  id: 'dev-auth-bypass-user',
+  email: 'dev@localhost',
+  name: 'Development User',
+  roles: ['admin']
+})
+
+const isAuthBypassEnabled = () => config.get('auth.bypass')
 
 /**
  * Middleware to ensure user is authenticated
@@ -11,6 +21,11 @@ const INSUFFICIENT_PERMISSIONS_URL = '/auth/insufficient-permissions'
  */
 export const requireAuth = (request, h) => {
   try {
+    if (isAuthBypassEnabled()) {
+      request.user = getBypassUser()
+      return h.continue
+    }
+
     // Check if user is authenticated
     if (!request.auth.isAuthenticated) {
       return h.redirect(`${LOGIN_REDIRECT_URL}${request.url.pathname}`)
@@ -41,6 +56,11 @@ export const requireRole = (requiredRoles) => {
 
   return (request, h) => {
     try {
+      if (isAuthBypassEnabled()) {
+        request.user = getBypassUser()
+        return h.continue
+      }
+
       // Check if user is authenticated
       if (!request.auth.isAuthenticated) {
         return h
@@ -80,6 +100,11 @@ export const requireRole = (requiredRoles) => {
  */
 export const requireAdmin = (request, h) => {
   try {
+    if (isAuthBypassEnabled()) {
+      request.user = getBypassUser()
+      return h.continue
+    }
+
     // Check if user is authenticated
     if (!request.auth.isAuthenticated) {
       return h

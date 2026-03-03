@@ -118,6 +118,7 @@ export async function createServer() {
         user,
         isAuthenticated,
         isAdmin,
+        authBypass: config.get('auth.bypass'),
         currentPath,
         navigation: nav
       }

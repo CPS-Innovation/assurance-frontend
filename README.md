@@ -108,6 +108,14 @@ To run the application in `development` mode run:
 npm run dev
 ```
 
+To bypass sign-in locally (treat all users as admin), run:
+
+```bash
+AUTH_BYPASS=true npm run dev
+```
+
+This is for local development only.
+
 ### Production
 
 To mimic the application running in `production` mode locally run:

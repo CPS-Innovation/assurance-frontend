@@ -70,8 +70,8 @@
             </li>
             {% endif %}
             <li class="govuk-service-navigation__item govuk-service-navigation__item--end">
-              <a class="govuk-service-navigation__link" href="{{ '/auth/logout' if isAuthenticated else '/auth/login' }}">
-                {{ 'Sign out' if isAuthenticated else 'Sign in' }}
+              <a class="govuk-service-navigation__link" href="{{ '/' if authBypass else ('/auth/logout' if isAuthenticated else '/auth/login') }}">
+                {{ 'Enter service' if authBypass else ('Sign out' if isAuthenticated else 'Sign in') }}
               </a>
             </li>
           </ul>

@@ -268,6 +268,14 @@ export const config = convict({
     format: Boolean,
     default: false,
     env: 'ENABLE_DEV_ROUTES'
+  },
+  auth: {
+    bypass: {
+      doc: 'Bypass authentication in local development and treat all users as admin',
+      format: Boolean,
+      default: false,
+      env: 'AUTH_BYPASS'
+    }
   }
 })
 
