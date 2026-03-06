@@ -276,6 +276,33 @@ export const config = convict({
       default: false,
       env: 'AUTH_BYPASS'
     }
+  },
+  passwordGate: {
+    enabled: {
+      doc: 'Enable simple password gate in front of all app routes',
+      format: Boolean,
+      default: false,
+      env: 'PASSWORD_GATE_ENABLED'
+    },
+    password: {
+      doc: 'Password required to access the frontend when password gate is enabled',
+      format: String,
+      default: '',
+      env: 'PASSWORD_GATE_PASSWORD',
+      sensitive: true
+    },
+    cookieName: {
+      doc: 'Cookie name for password gate session',
+      format: String,
+      default: 'assurance-password-gate',
+      env: 'PASSWORD_GATE_COOKIE_NAME'
+    },
+    cookieTtl: {
+      doc: 'Password gate cookie ttl in milliseconds',
+      format: Number,
+      default: eightHoursMs,
+      env: 'PASSWORD_GATE_COOKIE_TTL'
+    }
   }
 })
 

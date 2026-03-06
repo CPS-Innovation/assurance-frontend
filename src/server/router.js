@@ -15,6 +15,7 @@ import { accessibility } from './accessibility/index.js'
 import { cookies } from './cookies/index.js'
 import { insights } from './insights/index.js'
 import { themes } from './themes/index.js'
+import { passwordGate } from './password-gate/index.js'
 import { serveStaticFiles } from './common/helpers/serve-static-files.js'
 /**
  * @satisfies {ServerRegisterPluginObject<void>}
@@ -30,6 +31,7 @@ export const router = {
 
       // Application specific routes, add your own routes here
       const coreRoutes = [
+        passwordGate,
         home,
         about,
         admin,
