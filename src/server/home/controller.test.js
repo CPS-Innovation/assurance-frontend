@@ -153,7 +153,7 @@ describe('Home Controller', () => {
       expect(mockH.view).toHaveBeenCalledWith(
         'home/index',
         expect.objectContaining({
-          pageTitle: 'Defra Digital Assurance',
+          pageTitle: 'CPS Digital Assurance',
           projectNames: expect.arrayContaining([
             'Project 1',
             'Project 2',
@@ -330,7 +330,7 @@ describe('Home Controller', () => {
       expect(mockH.view).toHaveBeenCalledWith(
         'home/insights',
         expect.objectContaining({
-          pageTitle: 'Project Insights | Defra Digital Assurance',
+          pageTitle: 'Project Insights | CPS Digital Assurance',
           heading: 'Project Insights',
           projects: expect.any(Array),
           projectChangesByProject: expect.any(Object),

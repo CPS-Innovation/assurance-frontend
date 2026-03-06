@@ -212,7 +212,7 @@ describe('Projects controller', () => {
       expect(mockH.view).toHaveBeenCalledWith(
         'projects/detail/views/index',
         expect.objectContaining({
-          pageTitle: 'Test Project | Defra Digital Assurance',
+          pageTitle: 'Test Project | CPS Digital Assurance',
           heading: 'Test Project',
           project: expect.objectContaining({
             ...mockProject,
@@ -261,7 +261,7 @@ describe('Projects controller', () => {
       expect(mockH.view).toHaveBeenCalledWith(
         'projects/detail/views/index',
         expect.objectContaining({
-          pageTitle: 'Test Project | Defra Digital Assurance',
+          pageTitle: 'Test Project | CPS Digital Assurance',
           heading: 'Test Project',
           isAuthenticated: true
         })
@@ -411,7 +411,7 @@ describe('Projects controller', () => {
       expect(mockH.view).toHaveBeenCalledWith(
         'projects/detail/views/edit',
         expect.objectContaining({
-          pageTitle: 'Edit Test Project | Defra Digital Assurance',
+          pageTitle: 'Edit Test Project | CPS Digital Assurance',
           heading: 'Edit Test Project',
           project: expect.objectContaining({
             id: '1',

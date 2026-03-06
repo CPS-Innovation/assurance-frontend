@@ -24,7 +24,7 @@ const NOTIFICATIONS = {
 const mockDeliveryGroupAssessments = {
   'another-delivery-group': {
     outcome:
-      'To deliver high-quality digital services that support environmental protection and sustainability initiatives across Defra.',
+      'To deliver high-quality digital services that support environmental protection and sustainability initiatives across CPS.',
     roadmapUrl: '/delivery-groups/another-delivery-group/roadmap',
     assessments: [
       {

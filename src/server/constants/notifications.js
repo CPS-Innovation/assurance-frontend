@@ -176,4 +176,4 @@ export const LOG_MESSAGES = {
   PROJECT_NOT_FOUND_FOR_DELETION: 'Delivery not found for deletion'
 }
 
-export const DDTS_ASSURANCE_SUFFIX = ' | Defra Digital Assurance'
+export const DDTS_ASSURANCE_SUFFIX = ' | CPS Digital Assurance'

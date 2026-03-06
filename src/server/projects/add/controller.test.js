@@ -61,7 +61,7 @@ describe('Add Project controller', () => {
       expect(mockH.view).toHaveBeenCalledWith(
         'projects/add/views/index',
         expect.objectContaining({
-          pageTitle: 'Add Delivery | Defra Digital Assurance',
+          pageTitle: 'Add Delivery | CPS Digital Assurance',
           heading: 'Add Delivery',
           values: {},
           errors: {},

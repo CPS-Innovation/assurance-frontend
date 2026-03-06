@@ -21,7 +21,7 @@ const STANDARD_TITLES = {
 export const deliveryGroupStandardsController = {
   get: (request, h) => {
     return h.view(VIEW_TEMPLATES.DELIVERY_GROUP_STANDARDS, {
-      pageTitle: 'Delivery Group Standards | Defra Digital Assurance',
+      pageTitle: 'Delivery Group Standards | CPS Digital Assurance',
       heading: 'Delivery Group Standards'
     })
   },
@@ -39,7 +39,7 @@ export const deliveryGroupStandardsController = {
     const standardTitle = STANDARD_TITLES[standardNum]
 
     return h.view(viewTemplate, {
-      pageTitle: `${standardTitle} | Delivery Group Standards | Defra Digital Assurance`,
+      pageTitle: `${standardTitle} | Delivery Group Standards | CPS Digital Assurance`,
       heading: standardTitle,
       standardNumber: standardNum
     })

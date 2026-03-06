@@ -476,7 +476,7 @@ export const homeController = {
       const projectNames = visibleProjects.map((project) => project.name)
 
       return h.view(VIEW_TEMPLATES.HOME_INDEX, {
-        pageTitle: 'Defra Digital Assurance',
+        pageTitle: 'CPS Digital Assurance',
         projectNames,
         deliveryGroups,
         deliveryPartners,
@@ -552,7 +552,7 @@ export const homeController = {
       }
 
       return h.view('home/insights', {
-        pageTitle: 'Project Insights | Defra Digital Assurance',
+        pageTitle: 'Project Insights | CPS Digital Assurance',
         heading: 'Project Insights',
         projects: filteredProjects, // ALL projects for analytics
         projectChangesByProject, // Only recent changes

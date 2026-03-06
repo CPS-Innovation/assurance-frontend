@@ -78,7 +78,7 @@ export async function createServer() {
 
   // Set base view context
   const baseContext = {
-    serviceName: 'Defra Digital Assurance',
+    serviceName: 'CPS Digital Assurance',
     serviceUrl: '/',
     breadcrumbs: [
       {

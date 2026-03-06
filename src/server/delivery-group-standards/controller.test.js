@@ -21,7 +21,7 @@ describe('Delivery Group Standards controller', () => {
       expect(mockH.view).toHaveBeenCalledWith(
         'delivery-group-standards/views/index',
         {
-          pageTitle: 'Delivery Group Standards | Defra Digital Assurance',
+          pageTitle: 'Delivery Group Standards | CPS Digital Assurance',
           heading: 'Delivery Group Standards'
         }
       )
@@ -41,7 +41,7 @@ describe('Delivery Group Standards controller', () => {
         'delivery-group-standards/views/standard-1',
         {
           pageTitle:
-            '1. Define and share outcomes | Delivery Group Standards | Defra Digital Assurance',
+            '1. Define and share outcomes | Delivery Group Standards | CPS Digital Assurance',
           heading: '1. Define and share outcomes',
           standardNumber: 1
         }
@@ -60,7 +60,7 @@ describe('Delivery Group Standards controller', () => {
         'delivery-group-standards/views/standard-2',
         {
           pageTitle:
-            '2. Maintain an inventory of products and services | Delivery Group Standards | Defra Digital Assurance',
+            '2. Maintain an inventory of products and services | Delivery Group Standards | CPS Digital Assurance',
           heading: '2. Maintain an inventory of products and services',
           standardNumber: 2
         }
@@ -79,7 +79,7 @@ describe('Delivery Group Standards controller', () => {
         'delivery-group-standards/views/standard-3',
         {
           pageTitle:
-            '3. Publish a roadmap for change | Delivery Group Standards | Defra Digital Assurance',
+            '3. Publish a roadmap for change | Delivery Group Standards | CPS Digital Assurance',
           heading: '3. Publish a roadmap for change',
           standardNumber: 3
         }
@@ -98,7 +98,7 @@ describe('Delivery Group Standards controller', () => {
         'delivery-group-standards/views/standard-4',
         {
           pageTitle:
-            '4. Define success measures and share progress | Delivery Group Standards | Defra Digital Assurance',
+            '4. Define success measures and share progress | Delivery Group Standards | CPS Digital Assurance',
           heading: '4. Define success measures and share progress',
           standardNumber: 4
         }

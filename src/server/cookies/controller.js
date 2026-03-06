@@ -12,7 +12,7 @@ export const cookiesController = {
     request.logger.info('Getting cookies page')
 
     return h.view(VIEW_TEMPLATES.COOKIES, {
-      pageTitle: 'Cookie Policy | Defra Digital Assurance'
+      pageTitle: 'Cookie Policy | CPS Digital Assurance'
     })
   }
 }

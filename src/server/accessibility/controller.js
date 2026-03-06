@@ -12,7 +12,7 @@ export const accessibilityController = {
     request.logger.info('Getting accessibility page')
 
     return h.view(VIEW_TEMPLATES.ACCESSIBILITY, {
-      pageTitle: 'Accessibility Statement | Defra Digital Assurance'
+      pageTitle: 'Accessibility Statement | CPS Digital Assurance'
     })
   }
 }
