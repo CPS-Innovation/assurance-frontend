@@ -11,7 +11,9 @@ export const PROFESSION_STANDARD_MATRIX = {
     'technical-architecture': [6, 7, 11, 12, 13, 14],
     architecture: [6, 7, 11, 12, 13, 14], // Same as technical-architecture
     'software-development': [6, 7, 9, 11, 12, 13, 14], // Added standard 9
-    'user-centred-design': [1, 2, 3, 4, 5, 6, 7]
+    'user-centred-design': [1, 2, 3, 4, 5, 6, 7],
+    design: [1, 2, 3, 4, 5, 6, 7], // Alias for legacy data
+    'user-research': [1, 2, 3, 4, 5, 6, 7] // Alias for existing profession data
   },
 
   Alpha: {
@@ -23,7 +25,9 @@ export const PROFESSION_STANDARD_MATRIX = {
     'technical-architecture': [6, 7, 8, 9, 11, 12, 13, 14],
     architecture: [6, 7, 8, 9, 11, 12, 13, 14], // Same as technical-architecture
     'software-development': [6, 7, 8, 9, 11, 12, 13, 14], // Same as technical-architecture
-    'user-centred-design': [1, 2, 3, 4, 5, 7]
+    'user-centred-design': [1, 2, 3, 4, 5, 7],
+    design: [1, 2, 3, 4, 5, 7], // Alias for legacy data
+    'user-research': [1, 2, 3, 4, 5, 7] // Alias for existing profession data
   },
 
   'Private Beta': {
@@ -35,7 +39,9 @@ export const PROFESSION_STANDARD_MATRIX = {
     'technical-architecture': [7, 8, 9, 11, 12, 13, 14],
     architecture: [7, 8, 9, 11, 12, 13, 14], // Same as technical-architecture
     'software-development': [7, 8, 9, 11, 12, 13, 14], // Same as technical-architecture
-    'user-centred-design': [1, 2, 3, 4, 5, 7]
+    'user-centred-design': [1, 2, 3, 4, 5, 7],
+    design: [1, 2, 3, 4, 5, 7], // Alias for legacy data
+    'user-research': [1, 2, 3, 4, 5, 7] // Alias for existing profession data
   },
 
   'Public Beta': {
@@ -47,7 +53,9 @@ export const PROFESSION_STANDARD_MATRIX = {
     'technical-architecture': [7, 8, 9, 11, 12, 13, 14],
     architecture: [7, 8, 9, 11, 12, 13, 14], // Same as technical-architecture
     'software-development': [7, 8, 9, 11, 12, 13, 14], // Same as technical-architecture
-    'user-centred-design': [1, 2, 3, 4, 5, 7]
+    'user-centred-design': [1, 2, 3, 4, 5, 7],
+    design: [1, 2, 3, 4, 5, 7], // Alias for legacy data
+    'user-research': [1, 2, 3, 4, 5, 7] // Alias for existing profession data
   },
 
   Live: {
@@ -59,7 +67,9 @@ export const PROFESSION_STANDARD_MATRIX = {
     'technical-architecture': [7, 8, 9, 11, 12, 13, 14],
     architecture: [7, 8, 9, 11, 12, 13, 14], // Same as technical-architecture
     'software-development': [7, 8, 9, 11, 12, 13, 14], // Same as technical-architecture
-    'user-centred-design': [1, 2, 3, 4, 5, 7]
+    'user-centred-design': [1, 2, 3, 4, 5, 7],
+    design: [1, 2, 3, 4, 5, 7], // Alias for legacy data
+    'user-research': [1, 2, 3, 4, 5, 7] // Alias for existing profession data
   }
 }
 
