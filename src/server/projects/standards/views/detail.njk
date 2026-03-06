@@ -99,6 +99,8 @@
             {% endif %}
           {% endif %}
           
+          {% set formattedCommentary = (displayCommentary | escape | replace('\r\n', '\n') | replace('\n', '<br>')) %}
+
           <div class="govuk-!-margin-bottom-6">
             {% if isAdmin %}
               {% if assessment.mostRecentHistoryId %}
@@ -150,8 +152,8 @@
               },
               {
                 key: { text: "Commentary" },
-                value: { 
-                  html: displayCommentary
+                value: {
+                  html: formattedCommentary
                 }
               },
               {
