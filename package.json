@@ -52,7 +52,7 @@
     "aws-embedded-metrics": "^4.2.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "config": "^3.3.9",
-    "convict": "^6.2.4",
+    "convict": "^6.2.5",
     "cssnano": "^7.0.6",
     "cssnano-preset-default": "^7.0.6",
     "date-fns": "^4.1.0",
